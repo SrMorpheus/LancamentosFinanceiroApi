@@ -26,6 +26,20 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
 
         }
 
+        public Usuario ObterUsuarioCPF(string cpf)
+        {
+            var Usuario = _context.Usuarios.Include(U => U.Lancamentos).SingleOrDefault(C => C.CPF == cpf);
+
+            return Usuario;
+        }
+
+        public Usuario ObterUsuarioEmail(string email)
+        {
+            var Usuario = _context.Usuarios.Include(U => U.Lancamentos).SingleOrDefault(C => C.Email == email);
+
+            return Usuario;
+        }
+
         public void SalvarUsuario(Usuario usuario)
         {
 

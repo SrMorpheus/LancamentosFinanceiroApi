@@ -1,22 +1,25 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace LancamentosFinanceiroApi.Models
 {
     public class UsuarioDTO
     {
-
+        [JsonIgnore]
         public int Id { get; set; }
 
-        public string Nome { get; set; }
+        public string nome { get; set; }
 
-        public string CPF { get; set; }
+        public string cpf { get; set; }
 
-        public DateTime DataNascimento { get; set; }
+        public DateTime nascimento { get; set; }
 
-        public string Email { get; set; }
+        public string email { get; set; }
 
-        public string Senha { get; set; }
+        public string senha { get; set; }
 
+
+        [JsonIgnore]
         public List<LancamentoDTO>? Lancamentos { get; set; }
 
 

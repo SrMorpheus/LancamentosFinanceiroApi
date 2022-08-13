@@ -1,4 +1,8 @@
 using LancamentosFinanceiroApi.Data.Context;
+using LancamentosFinanceiroApi.Repository.Contract;
+using LancamentosFinanceiroApi.Repository.Implementations;
+using LancamentosFinanceiroApi.Services.Contract;
+using LancamentosFinanceiroApi.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEntityFrameworkSqlServer()
     .AddDbContext<FinancaContextoAPI>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FinancaDB")));
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementations>();
+
+builder.Services.AddScoped<IUsuarioServices, UsuarioServicesImplementations>();
 
 // Add services to the container.
 

@@ -9,6 +9,9 @@ namespace LancamentosFinanceiroApi.Repository.Contract
 
         public Usuario ObterUsuario(int id);
 
+        public Usuario ObterUsuarioCPF(string cpf);
+
+        public Usuario ObterUsuarioEmail(string email);
 
     }
 }

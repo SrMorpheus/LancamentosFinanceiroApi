@@ -12,15 +12,15 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
             return new Usuario
             {
 
-                Nome = origin.Nome,
+                Nome = origin.nome,
 
-                CPF = origin.CPF,
+                CPF = origin.cpf,
 
-                DataNascimento = origin.DataNascimento,
+                DataNascimento = origin.nascimento,
 
-                Email = origin.Email,
+                Email = origin.email,
 
-                Senha = origin.Senha
+                Senha = origin.senha
 
 
 
