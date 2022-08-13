@@ -2062,19 +2062,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sescapoio\\.nuget\\packages\\": {}
+    "C:\\Users\\apoio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sescapoio\\source\\repos\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
+      "projectUniqueName": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
       "projectName": "LancamentosFinanceiroApi",
-      "projectPath": "C:\\Users\\sescapoio\\source\\repos\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
-      "packagesPath": "C:\\Users\\sescapoio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sescapoio\\source\\repos\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\obj\\",
+      "projectPath": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
+      "packagesPath": "C:\\Users\\apoio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sescapoio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\apoio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2137,7 +2137,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.108\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -9,7 +9,7 @@
 
         public Usuario? UsuarioLacamento { get; set; }
 
-        public int LancamentoId { get; set; }
+        public int TipoLancamentoId { get; set; }
 
         public int UsuarioId { get; set; }  
 

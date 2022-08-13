@@ -1,4 +1,5 @@
-﻿using LancamentosFinanceiroApi.Models;
+﻿using LancamentosFinanceiroApi.Data.Configure;
+using LancamentosFinanceiroApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LancamentosFinanceiroApi.Data.Context
@@ -7,6 +8,8 @@ namespace LancamentosFinanceiroApi.Data.Context
     {
 
         public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Login> Logins { get; set; }
 
         public DbSet<TipoLancamento> TipoLancamentos { get; set; }
 
@@ -17,6 +20,17 @@ namespace LancamentosFinanceiroApi.Data.Context
           
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            //new EmailEntityTypeConfiguration().Configure(modelBuilder.Entity<Email>());
+
+            new TipoLancamentoEntityTypeConfigutation().Configure(modelBuilder.Entity<TipoLancamento>());
+
+        }
+
+
 
     }
 }
