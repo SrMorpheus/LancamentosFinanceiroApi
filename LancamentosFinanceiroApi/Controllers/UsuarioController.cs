@@ -56,6 +56,26 @@ namespace LancamentosFinanceiroApi.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType((200), Type = typeof(UsuarioVO))]
+        
+
+        public IActionResult GetUsuario(int id)
+        {
+
+            var usuario = _usuarioServices.ObterUsuario(id);
+
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(usuario);
+
+        }
+
 
     }
 }

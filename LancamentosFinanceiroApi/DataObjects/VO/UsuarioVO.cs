@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace LancamentosFinanceiroApi.Models
 {
@@ -15,9 +16,11 @@ namespace LancamentosFinanceiroApi.Models
 
         public string Email { get; set; }
 
+        [JsonIgnore]
         public string Senha { get; set; }
 
-        public List<LancamentoVO> Lancamentos { get; set; }
+        [JsonIgnore]
+        public List<LancamentoVO>? Lancamentos { get; set; }
 
 
 

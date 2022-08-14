@@ -22,6 +22,7 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
 
             var Usuario = _context.Usuarios.Include(U=> U.Lancamentos).SingleOrDefault(C => C.Id.Equals(id));
 
+
             return Usuario;
 
         }
