@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEntityFrameworkSqlServer()
+builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<FinancaContextoAPI>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FinancaDB")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("FinancaDB")));
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementations>();
 

@@ -17,7 +17,8 @@ namespace LancamentosFinanceiroApi.Data.Context
 
         public FinancaContextoAPI(DbContextOptions<FinancaContextoAPI> options) : base(options)
         {
-          
+
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         }
 
