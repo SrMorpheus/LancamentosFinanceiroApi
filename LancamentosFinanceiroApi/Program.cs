@@ -3,6 +3,7 @@ using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Repository.Implementations;
 using LancamentosFinanceiroApi.Services.Contract;
 using LancamentosFinanceiroApi.Services.Implementations;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,10 +31,36 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+
+    app.UseSwaggerUI(c => {
+
+        c.SwaggerEndpoint($"../swagger/v1/swagger.json", "APi de Finança  - v1".ToUpperInvariant());
+        
+
+    });
 }
 
+
 app.UseHttpsRedirection();
+
+//deploy no IIS
+app.UseRouting();
+
+app.UseCors();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c => {
+
+    c.SwaggerEndpoint("../swagger/v1/swagger.json", "APi de Finança - v1");
+
+
+});
+var option = new RewriteOptions();
+
+option.AddRedirect("^$", "swagger");
+app.UseRewriter(option);
+//aqui finaliza
 
 app.UseAuthorization();
 
