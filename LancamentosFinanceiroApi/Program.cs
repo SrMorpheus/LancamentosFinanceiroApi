@@ -72,12 +72,18 @@ builder.Services.AddAuthorization(auth =>
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
         .RequireAuthenticatedUser().Build());
 
-
-
-
-
-
 });
+
+builder.Services.AddCors(options => options.AddDefaultPolicy(buider =>
+
+{
+    buider.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+
+
+}));
+
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<FinancaContextoAPI>(options =>
@@ -124,6 +130,7 @@ app.UseHttpsRedirection();
 //deploy no IIS
 app.UseRouting();
 
+app.UseCors();
 
 app.UseSwagger();
 
