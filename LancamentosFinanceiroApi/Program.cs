@@ -1,12 +1,83 @@
+using LancamentosFinanceiroApi.Configurations;
 using LancamentosFinanceiroApi.Data.Context;
 using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Repository.Implementations;
 using LancamentosFinanceiroApi.Services.Contract;
 using LancamentosFinanceiroApi.Services.Implementations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+var tokenConfigurations = new TokenConfiguration();
+
+new ConfigureFromConfigurationOptions<TokenConfiguration>(
+
+    builder.Configuration.GetSection("TokenConfigurations")
+
+    ).Configure(tokenConfigurations);
+
+
+builder.Services.AddSingleton(tokenConfigurations);
+builder.Services.AddAuthentication(Options =>
+{
+
+    Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+})
+    .AddJwtBearer(Options =>
+    {
+
+        Options.TokenValidationParameters = new TokenValidationParameters
+        {
+
+            ValidateIssuer = true,
+
+            ValidateAudience = true,
+
+            ValidateLifetime = true,
+
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = tokenConfigurations.Issuer,
+
+            ValidAudience = tokenConfigurations.Audience,
+
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigurations.Secret))
+
+
+
+
+        };
+
+
+
+    });
+
+builder.Services.AddAuthorization(auth =>
+
+{
+
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+
+
+
+
+
+
+});
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<FinancaContextoAPI>(options =>
@@ -15,6 +86,13 @@ builder.Services.AddEntityFrameworkNpgsql()
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementations>();
 
 builder.Services.AddScoped<IUsuarioServices, UsuarioServicesImplementations>();
+
+builder.Services.AddScoped<ILoginService, LoginServiceImplementation>();
+
+
+builder.Services.AddTransient<ITokenService, TokenService>();
+
+builder.Services.AddScoped<ILoginRepository, LoginRepositoryImplementations>();
 
 // Add services to the container.
 
@@ -46,7 +124,6 @@ app.UseHttpsRedirection();
 //deploy no IIS
 app.UseRouting();
 
-app.UseCors();
 
 app.UseSwagger();
 

@@ -1,0 +1,16 @@
+﻿using System.Security.Claims;
+
+namespace LancamentosFinanceiroApi.Services.Contract
+{
+    public interface ITokenService
+    {
+
+        string GenerateAccessToken(IEnumerable<Claim> claims);
+
+        string GenerateRefreshToken();
+
+        ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
+
+
+    }
+}
