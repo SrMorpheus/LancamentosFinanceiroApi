@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6IOgZH+hvunprmK25C41nK/zTYOEfBXH1s2wwuO1yj1279SAPhYPGCUXS3gPc3hYqXiJzNwJRRUxhFRrmklapA==",
+  "dgSpecHash": "TntfN9y3GOsfqE0Fox4CEbrBs/fZn/z97O+l1kgukLd/HlWpt+4MwO3sKs5bNGthWri9lXbfL+TBK/sway3VTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
   "expectedPackageFiles": [
@@ -31,6 +31,7 @@
     "C:\\Users\\apoio\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.22.0\\microsoft.identitymodel.tokens.6.22.0.nupkg.sha512",
     "C:\\Users\\apoio\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\apoio\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\apoio\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\apoio\\.nuget\\packages\\npgsql\\6.0.6\\npgsql.6.0.6.nupkg.sha512",
     "C:\\Users\\apoio\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.6\\npgsql.entityframeworkcore.postgresql.6.0.6.nupkg.sha512",
     "C:\\Users\\apoio\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

@@ -51,11 +51,25 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
             return Lancamentos.ToList();
         }
 
-        public void NovoLancamento(Lancamento lancamento)
+        public void NovoLancamento(Lancamento lancamento, string username)
         {
-            _context.Add(lancamento);
 
-            _context.SaveChanges();
+            
+            var user = _context.Usuarios.SingleOrDefault(u => (u.Email == username));
+
+
+            if(user !=null)
+            {
+
+                lancamento.UsuarioId = user.Id;
+
+                _context.Add(lancamento);
+
+                _context.SaveChanges();
+
+            }
+
+        
         }
 
         public Lancamento ObterLancamento(int id)

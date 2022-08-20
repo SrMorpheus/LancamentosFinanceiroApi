@@ -6,7 +6,7 @@ namespace LancamentosFinanceiroApi.Repository.Contract
     public interface ILancamentoRepository
     {
 
-        void NovoLancamento(Lancamento lancamento);
+        void NovoLancamento(Lancamento lancamento, string username);
         Lancamento UpdateLancamento(Lancamento lancamento);
 
         void DeletarLancamento(int id);
