@@ -1,4 +1,5 @@
-﻿using LancamentosFinanceiroApi.DataObjects.VO;
+﻿using LancamentosFinanceiroApi.DataObjects.Converter.Implementation;
+using LancamentosFinanceiroApi.DataObjects.VO;
 using LancamentosFinanceiroApi.Models;
 using LancamentosFinanceiroApi.Services.Contract;
 using Microsoft.AspNetCore.Authorization;
@@ -13,9 +14,7 @@ namespace LancamentosFinanceiroApi.Controllers
     public class AuthController : ControllerBase
     {
 
-
         private ILoginService _loginService;
-
 
         public AuthController(ILoginService loginService)
         {
@@ -24,26 +23,32 @@ namespace LancamentosFinanceiroApi.Controllers
 
         }
 
-
-
-        /// <summary>
-        /// Lista os itens da To-do list.
-        /// </summary>
-        /// <returns>Os itens da To-do list</returns>
-        /// <response code="200">Returna os itens da To-do list cadastrados</response>
-
         [HttpPost]
 
         [Route("signin")]
+        [ProducesResponseType((404), Type = typeof(Erro))]
+        [ProducesResponseType((401), Type = typeof(Erro))]
         [ProducesResponseType((200), Type = typeof(TokenVO))]
         public IActionResult Signin([FromBody] LoginDTO login)
         {
 
-            if (login == null) return BadRequest("Ivalid client request");
+            if (login == null)
+            {
+
+                Erro erro = new Erro("Status Code 404", "Ivalid client request");
+
+                return BadRequest(erro);
+            }
 
             var token = _loginService.ValidateCredentials(login);
 
-            if (token == null) return Unauthorized();
+            if (token == null) 
+            {
+                Erro erro = new Erro("Status Code 401", "Autenticação inválida!");
+
+                return Unauthorized(erro);
+
+            } 
 
             return Ok(token);
 
@@ -53,14 +58,31 @@ namespace LancamentosFinanceiroApi.Controllers
         [HttpPost]
         [Route("refresh")]
         [ProducesResponseType((200), Type = typeof(TokenVO))]
-        public IActionResult Refresh([FromBody] TokenVO tokenVo)
+        [ProducesResponseType((404), Type = typeof(Erro))]
+        public IActionResult Refresh([FromBody] TokenDTO tokenDto)
         {
 
-            if (tokenVo is null) return BadRequest("Ivalid client request");
+            if (tokenDto is null) 
+            {
 
-            var token = _loginService.ValidateCredentials(tokenVo);
+                Erro erro = new Erro("Status Code 404", "Ivalid client request");
 
-            if (token == null) return BadRequest("Ivalid client request");
+                return BadRequest(erro);
+
+            }
+
+            TokenConverter converter = new TokenConverter();
+
+            var token = _loginService.ValidateCredentials(converter.Parse( tokenDto));
+
+            if (token == null)
+            {
+
+                Erro erro = new Erro("Status Code 404", "Ivalid client request");
+
+                return BadRequest(erro);
+
+            } 
 
             return Ok(token);
 
@@ -70,7 +92,7 @@ namespace LancamentosFinanceiroApi.Controllers
         [HttpGet]
         [Route("revoke")]
         [Authorize("Bearer")]
-
+        [ProducesResponseType((404), Type = typeof(Erro))]
         public IActionResult Revoke()
         {
 
@@ -78,7 +100,15 @@ namespace LancamentosFinanceiroApi.Controllers
 
             var result = _loginService.RevokeToken(username);
 
-            if (!result) return BadRequest("Ivalid client request");
+            if (!result) 
+            {
+
+                Erro erro = new Erro("Status Code 404", "Ivalid client request");
+
+                return BadRequest(erro);
+
+
+            } 
 
             return NoContent();
 

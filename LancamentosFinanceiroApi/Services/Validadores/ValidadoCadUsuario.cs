@@ -33,7 +33,7 @@ namespace LancamentosFinanceiroApi.Services.Validadores
             {
                 _error.Codigo = "Status code 422";
 
-                _error.mensagem = "Nome inválido";
+                _error.Mensagem = "Nome inválido";
 
                 return false;
             }
@@ -41,7 +41,7 @@ namespace LancamentosFinanceiroApi.Services.Validadores
             {
                 _error.Codigo = "Status code 422";
 
-                _error.mensagem = "Email inválido";
+                _error.Mensagem = "Email inválido";
 
                 return false;
 
@@ -51,7 +51,7 @@ namespace LancamentosFinanceiroApi.Services.Validadores
             {
                 _error.Codigo = "Status code 422";
 
-                _error.mensagem = "CPF inválido";
+                _error.Mensagem = "CPF inválido";
 
                 return false;
 
@@ -61,7 +61,7 @@ namespace LancamentosFinanceiroApi.Services.Validadores
             {
                 _error.Codigo = "Status code 422";
 
-                _error.mensagem = "Data de Nascimento inválido";
+                _error.Mensagem = "Data de Nascimento inválido";
 
                 return false;
 

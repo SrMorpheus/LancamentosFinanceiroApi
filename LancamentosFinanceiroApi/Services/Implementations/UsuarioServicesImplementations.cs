@@ -30,9 +30,15 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
         }
 
-        public UsuarioVO ObterUsuario(string cpf)
+        public UsuarioVO ObterUsuario(string userName)
         {
-            throw new NotImplementedException();
+            
+            var usuario = _conveter.Parse(_usuarioRepository.ObterUsuarioEmail(userName));
+
+            if(usuario == null) return null;
+
+            return usuario;
+
         }
 
         public bool SalvarUsuario(UsuarioDTO usuarioDTO)

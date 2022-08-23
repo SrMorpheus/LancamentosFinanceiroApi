@@ -1,6 +1,6 @@
 ﻿namespace LancamentosFinanceiroApi.Models
 {
-    public class Erro
+    public class Response
     {
 
         public Guid Id { get; set; }
@@ -10,27 +10,28 @@
 
         public string Mensagem { get; set; }
 
-        
-        public Erro ()
+
+        public Response()
         {
 
             Id = Guid.NewGuid();
 
         }
 
-        public Erro(string codigo , string mensagem)
+        public Response ( string codigo , string mensagem)
         {
 
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid ();
 
-            Codigo = codigo;    
+            Mensagem = mensagem;    
 
-            Mensagem = mensagem;
-
+            Codigo = codigo;
 
 
 
         }
+
+
 
     }
 }
