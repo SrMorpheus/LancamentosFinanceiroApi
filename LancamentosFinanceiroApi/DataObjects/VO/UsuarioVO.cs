@@ -12,6 +12,9 @@ namespace LancamentosFinanceiroApi.Models
 
         public string CPF { get; set; }
 
+        public string Nascimento { get; set; }
+
+        [JsonIgnore]
         public DateTime DataNascimento { get; set; }
 
         public string Email { get; set; }
@@ -22,6 +25,22 @@ namespace LancamentosFinanceiroApi.Models
         [JsonIgnore]
         public List<LancamentoVO>? Lancamentos { get; set; }
 
+
+
+        public UsuarioVO ()
+        {
+
+            FormatarData();
+
+        }
+
+
+        private  void FormatarData()
+        {
+
+            Nascimento = DataNascimento.ToString("MM/dd/yyyy");
+
+        }
 
 
     }
