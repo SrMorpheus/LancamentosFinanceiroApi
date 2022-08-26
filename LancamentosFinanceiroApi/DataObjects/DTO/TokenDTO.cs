@@ -2,12 +2,14 @@
 
 namespace LancamentosFinanceiroApi.DataObjects.VO
 {
-    public class TokenVO
+    public class TokenDTO
     {
 
 
         public bool Authenticated { get; set; }
 
+
+        [JsonIgnore]
         public  string? Mensagem { set; get; }
         public string Created { get; set; }
 
@@ -18,9 +20,9 @@ namespace LancamentosFinanceiroApi.DataObjects.VO
         public string RefreshToken { get; set; }
 
 
-        public TokenVO() { }
+        public TokenDTO() { }
 
-        public TokenVO(bool authenticated, string mensagem, string created, string expiration, string accessToken, string refreshToken)
+        public TokenDTO(bool authenticated, string mensagem, string created, string expiration, string accessToken, string refreshToken)
         {
             Authenticated = authenticated;
 

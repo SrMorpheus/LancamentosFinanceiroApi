@@ -70,6 +70,8 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
                 true,
 
+                "Usuário logado!",
+
                 createDate.ToString(DATE_FORMAT),
 
                 expirationDate.ToString(DATE_FORMAT),
@@ -121,6 +123,8 @@ namespace LancamentosFinanceiroApi.Services.Implementations
                 (
 
                 true,
+
+                "Login atualizado!",
 
                 createDate.ToString(DATE_FORMAT),
 

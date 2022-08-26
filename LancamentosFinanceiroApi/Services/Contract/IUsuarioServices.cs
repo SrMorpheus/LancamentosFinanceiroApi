@@ -10,7 +10,7 @@ namespace LancamentosFinanceiroApi.Services.Contract
 
         public UsuarioVO ObterUsuario(int id);
 
-        public UsuarioVO ObterUsuario(string cpf);
+        public UsuarioVO ObterUsuario(string userName);
 
 
     }
