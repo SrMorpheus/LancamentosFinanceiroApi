@@ -27,15 +27,9 @@ namespace LancamentosFinanceiroApi.Models
 
 
 
-        public UsuarioVO ()
-        {
+      
 
-            FormatarData();
-
-        }
-
-
-        private  void FormatarData()
+        public  void FormatarData()
         {
 
             Nascimento = DataNascimento.ToString("MM/dd/yyyy");

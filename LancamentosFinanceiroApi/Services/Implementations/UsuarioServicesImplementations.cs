@@ -24,6 +24,7 @@ namespace LancamentosFinanceiroApi.Services.Implementations
         public UsuarioVO ObterUsuario(int id)
         {
             var usuario = _conveter.Parse(_usuarioRepository.ObterUsuario(id));
+            usuario.FormatarData();
 
             return usuario;
 
@@ -37,6 +38,7 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
             if(usuario == null) return null;
 
+            usuario.FormatarData();
             return usuario;
 
         }
