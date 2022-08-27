@@ -1,4 +1,5 @@
-﻿using LancamentosFinanceiroApi.Models;
+﻿using LancamentosFinanceiroApi.DataObjects.VO;
+using LancamentosFinanceiroApi.Models;
 
 namespace LancamentosFinanceiroApi.Services.Contract
 {
@@ -10,9 +11,11 @@ namespace LancamentosFinanceiroApi.Services.Contract
 
         void DeletarLancamento(int id);
 
-        List<LancamentoVO> ListasLancamentosUsuario(int IdUsuario);
+        LancamentosPorTipoVO ListasLancamentosUsuario(string username);
 
         List<LancamentoVO> ListasLancamentosTiposUsuario(int IdUsuarios, int IdTipoLancamento);
+
+         LancamentosPorTipoVO ListasLancamentosTipos(string username, int IdTipoLancamento);
 
         LancamentoVO ObterLancamento(int id);
 

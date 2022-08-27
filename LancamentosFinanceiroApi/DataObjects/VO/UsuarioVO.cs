@@ -31,8 +31,9 @@ namespace LancamentosFinanceiroApi.Models
 
         public  void FormatarData()
         {
+            Nascimento = DataNascimento.ToString("yyyy-MM-dd");
 
-            Nascimento = DataNascimento.ToString("MM/dd/yyyy");
+            
 
         }
 

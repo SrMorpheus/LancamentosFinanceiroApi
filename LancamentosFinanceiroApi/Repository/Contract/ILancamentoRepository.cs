@@ -11,9 +11,11 @@ namespace LancamentosFinanceiroApi.Repository.Contract
 
         void DeletarLancamento(int id);
 
-        List<Lancamento> ListasLancamentosUsuario( int IdUsuario);
+        List<Lancamento> ListasLancamentosUsuario(string username);
 
         List<Lancamento> ListasLancamentosTiposUsuario(int IdUsuarios, int IdTipoLancamento);
+
+        List<Lancamento> ListasLancamentosTiposUsuario(string username, int IdTipoLancamento);
 
         Lancamento ObterLancamento(int id);
 

@@ -1,4 +1,5 @@
 ﻿using LancamentosFinanceiroApi.DataObjects.Converter.Implementation;
+using LancamentosFinanceiroApi.DataObjects.VO;
 using LancamentosFinanceiroApi.Models;
 using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Services.Contract;
@@ -33,9 +34,37 @@ namespace LancamentosFinanceiroApi.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public List<LancamentoVO> ListasLancamentosUsuario(int IdUsuario)
+        public LancamentosPorTipoVO ListasLancamentosTipos(string username, int IdTipoLancamento)
         {
-            throw new NotImplementedException();
+
+           var lancamentos =  _repositoryLancamento.ListasLancamentosTiposUsuario(username, IdTipoLancamento);
+
+           if (lancamentos == null) return null;
+
+            var LancamentosVO = _converter.Parse(lancamentos);
+
+            LancamentosVO.ForEach(L => L.SetDescricaoLancamento());
+
+           LancamentosPorTipoVO lancamentosPorTipo = new LancamentosPorTipoVO(lancamentos.Count(), LancamentosVO);
+
+            return lancamentosPorTipo;
+
+
+        }
+
+        public LancamentosPorTipoVO ListasLancamentosUsuario( string username)
+        {
+            var lancamentos = _repositoryLancamento.ListasLancamentosUsuario(username);
+
+            if (lancamentos == null) return null;
+
+            var LancamentosVO = _converter.Parse(lancamentos);
+
+            LancamentosVO.ForEach(L => L.SetDescricaoLancamento());
+
+            LancamentosPorTipoVO lancamentosPorTipo = new LancamentosPorTipoVO(lancamentos.Count(), LancamentosVO);
+
+            return lancamentosPorTipo;
         }
 
         public void NovoLancamento(LancamentoDTO lancamento, string username)

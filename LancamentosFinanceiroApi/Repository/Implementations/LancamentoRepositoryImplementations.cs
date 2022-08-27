@@ -43,10 +43,28 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
             return Lancamentos.ToList();
         }
 
-        public List<Lancamento> ListasLancamentosUsuario(int IdUsuario)
+        public List<Lancamento> ListasLancamentosTiposUsuario(string username, int IdTipoLancamento)
+
+        {
+            var user = _context.Usuarios.SingleOrDefault(u => (u.Email == username));
+
+            if (user == null) return null;
+
+            var Lancamentos = _context.Lancamentos.Include(T => T.TipoLancamento).Include(U => U.UsuarioLacamento).Where(C => C.UsuarioId.Equals(user.Id) && C.TipoLancamentoId.Equals(IdTipoLancamento));
+
+            return Lancamentos.ToList();
+
+
+        }
+
+        public List<Lancamento> ListasLancamentosUsuario(string username)
         {
 
-            var Lancamentos = _context.Lancamentos.Include(T => T.TipoLancamento).Include(U => U.UsuarioLacamento).Where(C => C.UsuarioId.Equals(IdUsuario));
+            var user = _context.Usuarios.SingleOrDefault(u => (u.Email == username));
+
+            if (user == null) return null;
+
+            var Lancamentos = _context.Lancamentos.Include(T => T.TipoLancamento).Include(U => U.UsuarioLacamento).Where(C => C.UsuarioId.Equals(user.Id));
 
             return Lancamentos.ToList();
         }
