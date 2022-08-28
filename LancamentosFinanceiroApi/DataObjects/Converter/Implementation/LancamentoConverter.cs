@@ -24,6 +24,8 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
             return new Lancamento
             {
                Valor = origin.Valor,
+               
+               DataLancamento = origin.DataLancamento,
 
                TipoLancamento = _converter.Parse(origin.TipoLancamento),
 
@@ -52,6 +54,8 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
                 Id = origin.Id, 
 
                 Valor = origin.Valor,
+
+                DataLancamento = origin.DataLancamento,
 
                 TipoLancamento = _converter.Parse(origin.TipoLancamento),
 

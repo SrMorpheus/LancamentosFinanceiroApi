@@ -3,8 +3,9 @@
     public class Lancamento
     {
         public int Id { get; set; }
-        public double Valor { get; set;}
+        public double Valor { get; set; }
 
+        public DateTime DataLancamento {get ; set;}
         public TipoLancamento? TipoLancamento { get; set; }
 
         public Usuario? UsuarioLacamento { get; set; }

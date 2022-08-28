@@ -10,6 +10,9 @@ namespace LancamentosFinanceiroApi.Models
         public int Id { get; set; }
         public double Valor { get; set;}
 
+        [JsonIgnore]
+        public DateTime DataLancamento { get; set; }
+
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public EnumDescricaoLancamento Lancamento { get; set; }
 

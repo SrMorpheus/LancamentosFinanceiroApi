@@ -43,7 +43,7 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
             var LancamentosVO = _converter.Parse(lancamentos);
 
-            LancamentosVO.ForEach(L => L.SetDescricaoLancamento());
+            LancamentosVO.ForEach(L => L.SetDescricaoEDataLancamento());
 
            LancamentosPorTipoVO lancamentosPorTipo = new LancamentosPorTipoVO(lancamentos.Count(), LancamentosVO);
 
@@ -60,7 +60,7 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
             var LancamentosVO = _converter.Parse(lancamentos);
 
-            LancamentosVO.ForEach(L => L.SetDescricaoLancamento());
+            LancamentosVO.ForEach(L => L.SetDescricaoEDataLancamento());
 
             LancamentosPorTipoVO lancamentosPorTipo = new LancamentosPorTipoVO(lancamentos.Count(), LancamentosVO);
 
@@ -79,7 +79,15 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
         public LancamentoVO ObterLancamento(int id)
         {
-            throw new NotImplementedException();
+            var lancamento = _repositoryLancamento.ObterLancamento(id);
+
+            if (lancamento == null) return null;
+
+            var lancamentoVO = _converter.Parse(lancamento);
+            lancamentoVO.SetDescricaoEDataLancamento();
+
+            return lancamentoVO;
+           
         }
 
         public LancamentoVO UpdateLancamento(LancamentoDTO lancamento)

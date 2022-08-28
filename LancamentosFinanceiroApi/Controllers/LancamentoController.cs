@@ -31,15 +31,46 @@ namespace LancamentosFinanceiroApi.Controllers
 
         public ActionResult NovoLancamento(LancamentoDTO lancamento)
         {
+            if (lancamento == null) BadRequest();
+
+            lancamento.DataLancamento = DateTime.Now;
             lancamento.SetTipoLancamento();
 
             var username = User.Identity.Name;
-
             _lancamentoServies.NovoLancamento(lancamento, username);
 
-            return Ok();
+            Response response = new Response("Status code 200", "Lançamento realizado com sucesso!");
+
+            return Ok(response);
 
         }
+
+
+        [HttpGet("single/{IdLancamento}")]
+       
+        [ProducesResponseType((200), Type = typeof(LancamentoVO))]
+        [ProducesResponseType((404), Type = typeof(Erro))]
+
+        public ActionResult ObterLancamento(int IdLancamento)
+        {
+            var lancamento = _lancamentoServies.ObterLancamento(IdLancamento);
+
+
+            if(lancamento == null)
+            {
+
+                Erro erro = new Erro("Statuc code 404","Não Existe esse Lancamento");
+
+                return BadRequest(erro);
+
+            }
+
+            return Ok(lancamento); 
+
+        }
+
+
+      
 
         [HttpGet("{TipoLancamento}")]
         [ProducesResponseType((200), Type = typeof(LancamentosPorTipoVO))]

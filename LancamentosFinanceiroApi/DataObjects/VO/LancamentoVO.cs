@@ -10,6 +10,12 @@ namespace LancamentosFinanceiroApi.Models
 
         public EnumDescricaoLancamento DescricaoLancamento { get; set; }
 
+        public string Data { get; set; }
+
+
+        [JsonIgnore]
+        public DateTime DataLancamento { get; set; }
+
         [JsonIgnore]
         public TipoLancamentoVO? TipoLancamento { get; set; }
 
@@ -25,8 +31,12 @@ namespace LancamentosFinanceiroApi.Models
 
 
 
-        public void SetDescricaoLancamento()
+        public void SetDescricaoEDataLancamento()
         {
+            
+
+            Data = DataLancamento.ToString("yyyy-MM-dd");
+
 
             switch (TipoLancamento.DescricaoLancamento)
             {
