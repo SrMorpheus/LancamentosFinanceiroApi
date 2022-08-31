@@ -10,9 +10,12 @@ namespace LancamentosFinanceiroApi.Models
         public int Id { get; set; }
         public double Valor { get; set;}
 
+        public  string LancamentoTipo { get; set; }
+
         [JsonIgnore]
         public DateTime DataLancamento { get; set; }
 
+        [JsonIgnore]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public EnumDescricaoLancamento Lancamento { get; set; }
 
@@ -33,15 +36,15 @@ namespace LancamentosFinanceiroApi.Models
         public void SetTipoLancamento()
         {
 
-            switch(Lancamento)
+            switch(LancamentoTipo)
             {
 
-                case EnumDescricaoLancamento.Entrada:
+                case "Entrada":
 
                     TipoLancamentoId = 1;
                     break;
 
-                case EnumDescricaoLancamento.Saída:
+                case "Saída":
 
                     TipoLancamentoId = 2;
                     break;

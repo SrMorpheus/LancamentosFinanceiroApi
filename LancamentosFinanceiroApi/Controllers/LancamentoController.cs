@@ -28,7 +28,7 @@ namespace LancamentosFinanceiroApi.Controllers
 
 
         [HttpPost]
-
+        [ProducesResponseType((200), Type = typeof(Response))]
         public ActionResult NovoLancamento(LancamentoDTO lancamento)
         {
             if (lancamento == null) BadRequest();
