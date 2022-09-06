@@ -15,13 +15,13 @@ namespace LancamentosFinanceiroApi.Controllers
         
         private readonly IUsuarioServices _usuarioServices ;
 
-        private readonly ValidadoCadUsuario _validadoCadUsuario;
+        private readonly ValidadorCadUsuario _validadoCadUsuario;
 
         public UsuarioController(IUsuarioServices usuarioServices)
         {
             _usuarioServices = usuarioServices;
 
-            _validadoCadUsuario = new ValidadoCadUsuario();
+            _validadoCadUsuario = new ValidadorCadUsuario();
         }
 
 

@@ -2,6 +2,7 @@
 using LancamentosFinanceiroApi.Models;
 using LancamentosFinanceiroApi.Models.Enum;
 using LancamentosFinanceiroApi.Services.Contract;
+using LancamentosFinanceiroApi.Services.Validadores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,12 @@ namespace LancamentosFinanceiroApi.Controllers
 
         private ILancamentoServices _lancamentoServies;
 
+        private ValidadorLancamento _validador;
+
 
 
         public LancamentoController(ILancamentoServices lancamentoServies)
         {
-
 
             _lancamentoServies = lancamentoServies;
         }
@@ -29,19 +31,28 @@ namespace LancamentosFinanceiroApi.Controllers
 
         [HttpPost]
         [ProducesResponseType((200), Type = typeof(Response))]
+        [ProducesResponseType((422), Type = typeof(Erro))]
+
         public ActionResult NovoLancamento(LancamentoDTO lancamento)
         {
-            if (lancamento == null) BadRequest();
+            bool boolReposta = _validador.ValidarLancamento(lancamento);
 
-            lancamento.DataLancamento = DateTime.Now;
-            lancamento.SetTipoLancamento();
+            if(boolReposta)
+            {
+                lancamento.DataLancamento = DateTime.Now;
+                lancamento.SetTipoLancamento();
 
-            var username = User.Identity.Name;
-            _lancamentoServies.NovoLancamento(lancamento, username);
+                var username = User.Identity.Name;
+                _lancamentoServies.NovoLancamento(lancamento, username);
 
-            Response response = new Response("Status code 200", "Lançamento realizado com sucesso!");
+                Response response = new Response("Status code 200", "Lançamento realizado com sucesso!");
 
-            return Ok(response);
+                return Ok(response);
+
+            }
+
+            return UnprocessableEntity(_validador.Error());
+
 
         }
 

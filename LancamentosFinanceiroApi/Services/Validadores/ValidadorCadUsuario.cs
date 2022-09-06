@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LancamentosFinanceiroApi.Services.Validadores
 {
-    public class ValidadoCadUsuario
+    public class ValidadorCadUsuario
     {
 
         private readonly Erro _error;
@@ -14,7 +14,7 @@ namespace LancamentosFinanceiroApi.Services.Validadores
 
 
 
-        public ValidadoCadUsuario ()
+        public ValidadorCadUsuario ()
         {
 
             _error = new Erro();

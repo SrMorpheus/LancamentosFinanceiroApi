@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bbarros\\Desktop\\Teste\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj": {}
+    "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bbarros\\Desktop\\Teste\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj": {
+    "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bbarros\\Desktop\\Teste\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
+        "projectUniqueName": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
         "projectName": "LancamentosFinanceiroApi",
-        "projectPath": "C:\\Users\\bbarros\\Desktop\\Teste\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
-        "packagesPath": "C:\\Users\\bbarros\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bbarros\\Desktop\\Teste\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\obj\\",
+        "projectPath": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi.csproj",
+        "packagesPath": "C:\\Users\\apoio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\apoio\\Desktop\\Projeto Pessoal\\LancamentosFinanceiroApi\\LancamentosFinanceiroApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\bbarros\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\apoio\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -101,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
