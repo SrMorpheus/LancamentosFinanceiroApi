@@ -1,4 +1,5 @@
-﻿using LancamentosFinanceiroApi.DataObjects.VO;
+﻿using LancamentosFinanceiroApi.DataObjects.Converter.Implementation;
+using LancamentosFinanceiroApi.DataObjects.VO;
 using LancamentosFinanceiroApi.Models;
 using LancamentosFinanceiroApi.Models.Enum;
 using LancamentosFinanceiroApi.Services.Contract;
@@ -81,7 +82,7 @@ namespace LancamentosFinanceiroApi.Controllers
         }
 
 
-      
+     
 
         [HttpGet("{TipoLancamento}")]
         [ProducesResponseType((200), Type = typeof(LancamentosPorTipoVO))]
@@ -133,6 +134,76 @@ namespace LancamentosFinanceiroApi.Controllers
             return Ok(lancamentos);
 
         }
+
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType((200), Type = typeof(Response))]
+        [ProducesResponseType((422), Type = typeof(Erro))]
+        public IActionResult DeleteLancamento(int id)
+        {
+
+            var boolReposta = _lancamentoServies.DeletarLancamento(id);
+
+
+            if(boolReposta)
+            {
+
+                Response Reposta = new Response("Status code 200", "Lançamento deletado com sucesso");
+
+                return Ok(Reposta);
+
+            }
+            else
+            {
+                Erro erro = new Erro ("Status code 422", "Não existe esse lancamento");
+
+                return UnprocessableEntity(erro);
+
+
+            }
+
+
+        }
+
+        [HttpPut]
+        [ProducesResponseType((200), Type = typeof(Response))]
+        [ProducesResponseType((422), Type = typeof(Erro))]
+        public ActionResult UpdadeLancamento( LancamentoVO lancamento)
+        {
+
+            LancamentoConverter converter = new LancamentoConverter();
+
+            lancamento.SetTipoLancamento();
+
+            var lancamentoDTO = converter.Parse(lancamento);
+
+            var result = _lancamentoServies.UpdateLancamento(lancamentoDTO);
+
+            if(result == null)
+            {
+
+                Erro erro = new Erro("Status code 422", "Atualização do item inválido");
+
+                return UnprocessableEntity(erro);
+
+            }
+            else
+            {
+
+                Response Reposta = new Response("Status code 200", "Lançamento atualizado com sucesso");
+
+                return Ok(Reposta);
+
+            }
+
+
+
+
+
+
+
+        }
+
 
 
     }

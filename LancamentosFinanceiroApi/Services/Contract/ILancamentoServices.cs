@@ -9,7 +9,7 @@ namespace LancamentosFinanceiroApi.Services.Contract
         void NovoLancamento(LancamentoDTO lancamento, string username);
         LancamentoVO UpdateLancamento(LancamentoDTO lancamento);
 
-        void DeletarLancamento(int id);
+        bool DeletarLancamento(int id);
 
         LancamentosPorTipoVO ListasLancamentosUsuario(string username);
 

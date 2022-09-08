@@ -1,4 +1,5 @@
 ﻿using LancamentosFinanceiroApi.Models;
+using LancamentosFinanceiroApi.Repository.Contract;
 
 namespace LancamentosFinanceiroApi.Services.Validadores
 {
@@ -6,15 +7,17 @@ namespace LancamentosFinanceiroApi.Services.Validadores
     {
 
         private Erro _erro;
+        
+       
 
 
         public ValidadorLancamento()
         {
 
             _erro = new Erro();
-
         }
 
+    
 
         public bool  ValidarLancamento (LancamentoDTO lancamento)
         {

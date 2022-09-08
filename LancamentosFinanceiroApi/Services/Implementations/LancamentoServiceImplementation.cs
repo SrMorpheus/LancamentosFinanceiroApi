@@ -24,9 +24,28 @@ namespace LancamentosFinanceiroApi.Services.Implementations
         }
 
 
-        public void DeletarLancamento(int id)
+        public bool DeletarLancamento(int id)
         {
-            throw new NotImplementedException();
+
+            var lancamento = _repositoryLancamento.ObterLancamento(id);
+
+            if (lancamento == null)
+            {
+
+                return false;
+
+
+            }
+            else 
+            {
+
+                _repositoryLancamento.DeletarLancamento(id);
+
+                return true;
+
+
+            }
+
         }
 
         public List<LancamentoVO> ListasLancamentosTiposUsuario(int IdUsuarios, int IdTipoLancamento)
@@ -92,7 +111,15 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
         public LancamentoVO UpdateLancamento(LancamentoDTO lancamento)
         {
-            throw new NotImplementedException();
+            var lancamentoDb = _converter.Parse(lancamento);
+
+            lancamentoDb = _repositoryLancamento.UpdateLancamento(lancamentoDb);
+
+
+            return _converter.Parse(lancamentoDb);
+
+
+
         }
     }
 }

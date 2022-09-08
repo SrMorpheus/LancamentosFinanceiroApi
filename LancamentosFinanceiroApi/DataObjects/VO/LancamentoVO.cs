@@ -33,7 +33,7 @@ namespace LancamentosFinanceiroApi.Models
 
         public void SetDescricaoEDataLancamento()
         {
-            
+
 
             Data = DataLancamento.ToString("yyyy-MM-dd");
 
@@ -57,5 +57,27 @@ namespace LancamentosFinanceiroApi.Models
 
 
         }
+
+        public void SetTipoLancamento()
+        {
+
+            switch (DescricaoLancamento)
+            {
+
+                case EnumDescricaoLancamento.Entrada:
+
+                    TipoLancamentoId = 1;
+                    break;
+
+                case EnumDescricaoLancamento.Saída:
+
+                    TipoLancamentoId = 2;
+                    break;
+
+
+
+            }
+        }
     }
+
 }

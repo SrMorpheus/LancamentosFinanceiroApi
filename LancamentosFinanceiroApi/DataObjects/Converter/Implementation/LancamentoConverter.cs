@@ -3,7 +3,7 @@ using LancamentosFinanceiroApi.Models;
 
 namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
 {
-    public class LancamentoConverter : ILancamento<LancamentoDTO, Lancamento>, ILancamento<Lancamento, LancamentoVO>
+    public class LancamentoConverter : ILancamento<LancamentoDTO, Lancamento>, ILancamento<Lancamento, LancamentoVO>, ILancamento<LancamentoVO, LancamentoDTO>
     {
 
         private readonly TipoLancamentoConverter _converter;
@@ -71,6 +71,33 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
             if (origin == null) return null;
 
             return origin.Select(item => Parse(item)).ToList();
+        }
+
+        public LancamentoDTO Parse(LancamentoVO origin)
+        {
+
+
+            return new LancamentoDTO
+            {
+                Valor = origin.Valor,
+
+                DataLancamento = origin.DataLancamento,
+
+                TipoLancamentoId = origin.TipoLancamentoId
+
+
+            };
+
+
+        }
+
+        public List<LancamentoDTO> Parse(List<LancamentoVO> origin)
+        {
+
+            if (origin == null) return null;
+
+            return origin.Select(item => Parse(item)).ToList();
+
         }
     }
 }
