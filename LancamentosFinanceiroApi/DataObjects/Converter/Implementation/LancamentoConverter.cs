@@ -53,7 +53,7 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
             {
                 Id = origin.Id, 
 
-                Valor = origin.Valor,
+                Valor = origin.Valor.ToString(),
 
                 DataLancamento = origin.DataLancamento,
 
@@ -79,7 +79,7 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
 
             return new LancamentoDTO
             {
-                Valor = origin.Valor,
+                Valor = double.Parse(origin.Valor),
 
                 DataLancamento = origin.DataLancamento,
 

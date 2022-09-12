@@ -1,6 +1,7 @@
 ﻿using LancamentosFinanceiroApi.DataObjects.Converter.Implementation;
 using LancamentosFinanceiroApi.DataObjects.VO;
 using LancamentosFinanceiroApi.Models;
+using LancamentosFinanceiroApi.Models.Enum;
 using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Services.Contract;
 
@@ -121,5 +122,57 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
 
         }
+
+        public DashBoardLancamentoVO DashBoardLancamento(string username)
+        {
+
+
+            var quantidadeEntrada = QuantidadeLancamentoTipo(username, (int)EnumDescricaoLancamento.Entrada);
+            var quantidadeSaida = QuantidadeLancamentoTipo(username, (int)EnumDescricaoLancamento.Saída);
+            var TotalDeLancamentos = quantidadeEntrada + quantidadeSaida;
+
+
+            var valorEntrada = SaldoLancamentoTipo(username, (int)EnumDescricaoLancamento.Entrada);
+            var valorSaida = SaldoLancamentoTipo(username, (int)EnumDescricaoLancamento.Saída);
+            var SaldoLancamento = valorEntrada - valorSaida;
+            DashBoardLancamentoVO dashBoard = new DashBoardLancamentoVO((ulong)TotalDeLancamentos, (ulong)quantidadeEntrada, (ulong)quantidadeSaida, SaldoLancamento.ToString(), valorEntrada.ToString(), valorSaida.ToString());
+
+            return dashBoard;
+
+
+
+        }
+
+
+        private double SaldoLancamentoTipo( string username , int idTipo)
+        {
+            double valorTotal = 0;
+
+            var lancamentos = _repositoryLancamento.ListasLancamentosTiposUsuario(username, idTipo);
+
+            foreach(var lancamento in lancamentos)
+            {
+
+                valorTotal = valorTotal + lancamento.Valor;
+
+
+            }
+
+            return valorTotal;
+
+
+        }
+
+
+        private int QuantidadeLancamentoTipo(string username, int idTipo)
+        {
+
+            var lancamentos = _repositoryLancamento.ListasLancamentosTiposUsuario(username, idTipo);
+
+            return lancamentos.Count;
+
+        }
+
+
     }
 }

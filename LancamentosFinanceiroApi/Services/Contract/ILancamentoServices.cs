@@ -19,6 +19,8 @@ namespace LancamentosFinanceiroApi.Services.Contract
 
         LancamentoVO ObterLancamento(int id);
 
+        DashBoardLancamentoVO DashBoardLancamento(string username);
+
 
     }
 }

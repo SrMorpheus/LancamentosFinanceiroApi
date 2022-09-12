@@ -1,4 +1,7 @@
 ﻿using LancamentosFinanceiroApi.Models.Enum;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace LancamentosFinanceiroApi.Models
@@ -6,7 +9,28 @@ namespace LancamentosFinanceiroApi.Models
     public class LancamentoVO
     {
         public int Id { get; set; }
-        public double Valor { get; set; }
+
+        private double _valor;
+
+        public string Valor
+        {
+            get
+            {
+                var br = new CultureInfo("pt-br");
+
+                return _valor.ToString("C2",br);
+
+
+            }
+            set
+            {
+
+                _valor = double.Parse(value);
+
+
+            }
+        }
+       
 
         public EnumDescricaoLancamento DescricaoLancamento { get; set; }
 

@@ -197,9 +197,20 @@ namespace LancamentosFinanceiroApi.Controllers
             }
 
 
+        }
+
+        [HttpGet("DashBoard")]
+
+        [ProducesResponseType((200), Type = typeof(DashBoardLancamentoVO))]
+        [ProducesResponseType((404), Type = typeof(Erro))]
+        public ActionResult DashBoardLancamentos()
+        {
+            var username = User.Identity.Name;
+
+            var dashBoardView = _lancamentoServies.DashBoardLancamento(username);
 
 
-
+            return Ok(dashBoardView);
 
 
         }
