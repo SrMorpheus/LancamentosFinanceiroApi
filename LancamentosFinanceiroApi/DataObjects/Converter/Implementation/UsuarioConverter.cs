@@ -44,6 +44,8 @@ namespace LancamentosFinanceiroApi.DataObjects.Converter.Implementation
 
                 Id = origin.Id,
 
+                FotoPerfil = origin.FotoPerfil,
+
                 Nome = origin.Nome,
 
                 CPF = origin.CPF,

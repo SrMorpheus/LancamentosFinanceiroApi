@@ -7,6 +7,8 @@ namespace LancamentosFinanceiroApi.Repository.Contract
 
         public void SalvarUsuario(Usuario usuario);
 
+        Usuario UpdateUsuario(Usuario usuario);
+
         public Usuario ObterUsuario(int id);
 
         public Usuario ObterUsuarioCPF(string cpf);

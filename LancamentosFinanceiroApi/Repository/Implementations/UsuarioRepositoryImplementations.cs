@@ -20,10 +20,10 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
         public Usuario ObterUsuario(int id)
         {
 
-            var Usuario = _context.Usuarios.Include(U=> U.Lancamentos).SingleOrDefault(C => C.Id.Equals(id));
+            var usuario = _context.Usuarios.Include(U=> U.Lancamentos).SingleOrDefault(C => C.Id.Equals(id));
 
 
-            return Usuario;
+            return usuario;
 
         }
 
@@ -56,6 +56,25 @@ namespace LancamentosFinanceiroApi.Repository.Implementations
 
         }
 
+        public Usuario UpdateUsuario(Usuario usuario)
+        {
+
+            var result = _context.Usuarios.SingleOrDefault(C => C.Id.Equals(usuario.Id));
+
+            if (result != null)
+            {
+                _context.Entry(result).CurrentValues.SetValues(usuario);
+
+                _context.SaveChanges();
+
+                return usuario;
+
+            }
+
+            return null;
+
+
+        }
 
         private string ComputeHash(string password, SHA256CryptoServiceProvider algoritm)
         {

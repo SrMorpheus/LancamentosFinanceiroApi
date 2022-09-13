@@ -31,7 +31,7 @@ namespace LancamentosFinanceiroApi.Controllers
         [ProducesResponseType((422), Type = typeof(Erro))]
         [ProducesResponseType((200), Type = typeof(Response))]
         [ProducesResponseType((404), Type = typeof(Response))]
-        public ActionResult  CadrastrarUsuario([FromBody] UsuarioDTO usuarioDTO)
+        public async Task <ActionResult>  CadrastrarUsuario([FromBody] UsuarioDTO usuarioDTO)
         {
             
 
@@ -49,7 +49,7 @@ namespace LancamentosFinanceiroApi.Controllers
             if(validaEntrada)
             {
 
-                bool valida = _usuarioServices.SalvarUsuario(usuarioDTO);
+                bool valida = await _usuarioServices.SalvarUsuario(usuarioDTO);
 
                 if (valida)
                 {
@@ -77,10 +77,10 @@ namespace LancamentosFinanceiroApi.Controllers
         [ProducesResponseType((404), Type = typeof(Erro))]
 
 
-        public IActionResult GetUsuario(int id)
+        public  IActionResult GetUsuario(int id)
         {
 
-            var usuario = _usuarioServices.ObterUsuario(id);
+            var usuario =  _usuarioServices.ObterUsuario(id);
 
 
             if (usuario == null)

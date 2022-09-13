@@ -2,6 +2,7 @@
 using LancamentosFinanceiroApi.Models;
 using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Services.Contract;
+using LancamentosFinanceiroApi.ServicesAPI.DogAPI.Service;
 
 namespace LancamentosFinanceiroApi.Services.Implementations
 {
@@ -11,23 +12,25 @@ namespace LancamentosFinanceiroApi.Services.Implementations
         private readonly IUsuarioRepository _usuarioRepository;
 
         private readonly UsuarioConverter _conveter;
-        
 
-        public UsuarioServicesImplementations(IUsuarioRepository usuarioRepository)
+
+        private readonly GetDog _getDog;
+
+        public UsuarioServicesImplementations(IUsuarioRepository usuarioRepository, GetDog getDog)
         {
 
-
             _usuarioRepository = usuarioRepository;
+            _getDog = getDog;
             _conveter = new UsuarioConverter();
         }   
 
-        public UsuarioVO ObterUsuario(int id)
+        public   UsuarioVO ObterUsuario(int id)
         {
+            
             var usuario = _conveter.Parse(_usuarioRepository.ObterUsuario(id));
             usuario.FormatarData();
 
             return usuario;
-
 
         }
 
@@ -43,16 +46,20 @@ namespace LancamentosFinanceiroApi.Services.Implementations
 
         }
 
-        public bool SalvarUsuario(UsuarioDTO usuarioDTO)
+        public async Task<bool> SalvarUsuario(UsuarioDTO usuarioDTO)
         {
-           var  result = _usuarioRepository.ObterUsuarioCPF(usuarioDTO.cpf);
+            var  result = _usuarioRepository.ObterUsuarioCPF(usuarioDTO.cpf);
 
             var resultaEmail = _usuarioRepository.ObterUsuarioEmail(usuarioDTO.email);
 
             if (result == null && resultaEmail == null)
             {
 
+                var foto = await _getDog.ProcessDog();
+
                 var usuario = _conveter.Parse(usuarioDTO);
+
+                usuario.FotoPerfil = foto.message;
 
                 _usuarioRepository.SalvarUsuario(usuario);
 
@@ -63,6 +70,16 @@ namespace LancamentosFinanceiroApi.Services.Implementations
             return false;
            
 
+
+        }
+
+        public UsuarioVO UpdateUsuario(Usuario usuario)
+        {
+
+            var usuariovO = _usuarioRepository.UpdateUsuario(usuario);
+
+            return _conveter.Parse(usuariovO);
+            
 
         }
     }

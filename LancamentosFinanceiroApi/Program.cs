@@ -4,6 +4,7 @@ using LancamentosFinanceiroApi.Repository.Contract;
 using LancamentosFinanceiroApi.Repository.Implementations;
 using LancamentosFinanceiroApi.Services.Contract;
 using LancamentosFinanceiroApi.Services.Implementations;
+using LancamentosFinanceiroApi.ServicesAPI.DogAPI.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Rewrite;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -98,7 +100,7 @@ builder =>
     ));
 
 
-
+//injeção de dependecia
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementations>();
 
 builder.Services.AddScoped<IUsuarioServices, UsuarioServicesImplementations>();
@@ -112,6 +114,20 @@ builder.Services.AddScoped<ILancamentoServices, LancamentoServiceImplementation>
 builder.Services.AddTransient<ITokenService, TokenService>();
 
 builder.Services.AddScoped<ILoginRepository, LoginRepositoryImplementations>();
+
+
+//chamada htpp
+builder.Services.AddHttpClient<GetDog>(client =>
+{
+
+    client.BaseAddress = new Uri("https://dog.ceo/");
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+});
+
+
+
 
 // Add services to the container.
 

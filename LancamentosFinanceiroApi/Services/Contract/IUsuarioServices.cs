@@ -6,11 +6,13 @@ namespace LancamentosFinanceiroApi.Services.Contract
 
     {
 
-        public bool SalvarUsuario(UsuarioDTO usuarioDTO);
+        public  Task<bool> SalvarUsuario(UsuarioDTO usuarioDTO);
 
         public UsuarioVO ObterUsuario(int id);
 
         public UsuarioVO ObterUsuario(string userName);
+
+        public UsuarioVO UpdateUsuario(Usuario usuario);
 
 
     }

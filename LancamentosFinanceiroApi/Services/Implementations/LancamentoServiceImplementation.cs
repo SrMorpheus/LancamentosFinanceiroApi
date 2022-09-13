@@ -126,7 +126,6 @@ namespace LancamentosFinanceiroApi.Services.Implementations
         public DashBoardLancamentoVO DashBoardLancamento(string username)
         {
 
-
             var quantidadeEntrada = QuantidadeLancamentoTipo(username, (int)EnumDescricaoLancamento.Entrada);
             var quantidadeSaida = QuantidadeLancamentoTipo(username, (int)EnumDescricaoLancamento.Saída);
             var TotalDeLancamentos = quantidadeEntrada + quantidadeSaida;
