@@ -26,6 +26,8 @@ namespace LancamentosFinanceiroApi.Controllers
         {
 
             _lancamentoServies = lancamentoServies;
+
+            _validador = new ValidadorLancamento();
         }
 
 
